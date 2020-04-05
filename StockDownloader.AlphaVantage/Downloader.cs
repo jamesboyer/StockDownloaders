@@ -34,7 +34,7 @@ namespace StockDownloader.AlphaVantage
       var output = outputSize.ToString().ToLower();
       var uri = $"https://www.alphavantage.co/query?{func}&symbol={symbol}&outputsize={output}&datatype=csv&apikey={apiKey}";
       var response = await _client.GetAsync(uri);
-      if (response.IsSuccessStatusCode)
+      if (!response.IsSuccessStatusCode)
       {
         Console.WriteLine($"Failed download for: {symbol}. StatusCode: {response.StatusCode}, Content: {response.Content}");
         return;
